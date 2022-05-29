@@ -137,7 +137,7 @@ KMPSearch:
     jal    computeLPSArray
     sw      zero,-20(s0)
     sw      zero,-24(s0)
-    j       .L6
+    j       end #.L6
 
 .L6:
     lw      a4,-20(s0)
