@@ -62,7 +62,7 @@ computeLPSArray:
     blt     a4,a5,.L3
     #   nop
     #   nop
-    li      a6,9
+    li      a6,10
     li a7,4
     ld a5,-56(s0)
     li t1,4
@@ -84,11 +84,18 @@ computeLPSArray:
     jr      ra
     
 .L3:
-    lw      a5,-24(s0)      
-    ld      a4,-40(s0)      
+    lw      a5,-24(s0)  
+    
+    
+    ld      a4,-40(s0)
+    nop
+    nop
     add     a5,a4,a5
+    nop
+    nop
     lb      a3,0(a5)            # pat[i]
     lw      a5,-20(s0)
+    
     ld      a4,-40(s0)
     add     a5,a4,a5
     lb      a5,0(a5)            # pat[len]
@@ -110,6 +117,7 @@ computeLPSArray:
     j       .L2
  
 .L4:
+    li      a6,10
     lw      a5,-20(s0)
     #    sext.w  a5,a5
     beq     a5,zero,.L5
