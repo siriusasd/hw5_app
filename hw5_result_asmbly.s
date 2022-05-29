@@ -95,10 +95,11 @@ computeLPSArray:
     nop
     lb      a3,0(a5)            # pat[i]
     lw      a5,-20(s0)
-    
     ld      a4,-40(s0)
-    add     a5,a4,a5
-    lb      a5,0(a5)            # pat[len]
+    nop
+    add     a4,a4,a5
+    nop
+    lb      a5,0(a4)            # pat[len]
 
     bne     a3,a5,.L4
 
