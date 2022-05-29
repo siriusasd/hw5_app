@@ -27,6 +27,17 @@ newline: .string "\n"
 # Start your coding below, don't change anything upper.
 
 _start:
+    addi    sp,sp,-16
+    sd      ra,8(sp)
+    sd      s0,0(sp)
+    addi    s0,sp,16
+    jal    KMPSearch()
+    li      a5,0
+    mv      a0,a5
+    ld      ra,8(sp)
+    ld      s0,0(sp)
+    addi    sp,sp,16
+    j       end
 
 computeLPSArray:
     addi    sp,sp,-64
@@ -117,7 +128,7 @@ KMPSearch:
     li      a1,20
     lui     a5,%hi(pattern)
     addi    a0,a5,%lo(pattern)
-    call    computeLPSArray
+    jal    computeLPSArray
     sw      zero,-20(s0)
     sw      zero,-24(s0)
     j       .L6
@@ -168,7 +179,9 @@ KMPSearch:
     mv      a1,a5
     lui     a5,%hi(str)
     addi    a0,a5,%lo(str)
-    call    printf
+   
+    li a7, 1
+    ecall
 
     lw      a5,-24(s0)
     addiw   a5,a5,-1
@@ -216,4 +229,4 @@ KMPSearch:
     sw      a5,-20(s0)
     j       .L6
     
-
+   end:nop
