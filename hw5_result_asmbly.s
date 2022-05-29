@@ -112,15 +112,6 @@ computeLPSArray:
     
 .L5:
     li      a3,7
-    mv     a0,a3
-    li a7, 1
-    ecall
-    
-    la a0, newline
-    li a7, 4
-    ecall
-      
-    
     lw      a5,-24(s0)
     slli    a5,a5,2
     ld      a4,-56(s0)
@@ -145,6 +136,7 @@ KMPSearch:
     jal    computeLPSArray
     sw      zero,-20(s0)
     sw      zero,-24(s0)
+    li a3,10
     j       end                #.L6
 
 end:nop
