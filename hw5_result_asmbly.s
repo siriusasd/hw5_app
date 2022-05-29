@@ -176,12 +176,21 @@ KMPSearch:
     lw      a5,-24(s0)
     subw    a5,a4,a5
 #    sext.w  a5,a5
+    
+    la a0, str
+    li a7, 4
+    ecall
+    
     mv      a1,a5
     lui     a5,%hi(str)
     addi    a0,a5,%lo(str)
-   
     li a7, 1
     ecall
+    
+    la a0, newline
+    li a7, 4
+    ecall
+    
 
     lw      a5,-24(s0)
     addiw   a5,a5,-1
