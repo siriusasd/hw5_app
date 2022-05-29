@@ -50,10 +50,7 @@ computeLPSArray:
     ld      a5,-56(s0)
     sw      zero,0(a5)          # lps[0] = 0
     addi    a5,zero,1
-    sw      a5,-24(s0)          # i = 1
-    
-    li      a6,7
-    
+    sw      a5,-24(s0)          # i = 1 
     j       .L2
     
 .L2:
@@ -61,10 +58,11 @@ computeLPSArray:
     lw      a5,-44(s0)      # M
     #   sext.w  a4,a4 
     #   sext.w  a5,a5
-    
+    li      a6,8
     blt     a4,a5,.L3
     #   nop
     #   nop
+    li      a6,9
     li a7,4
     ld a5,-56(s0)
     li t1,4
