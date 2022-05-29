@@ -129,10 +129,14 @@ computeLPSArray:
 .L4:
     li      a6,10
     lw      a5,-20(s0)
+    nop
+    nop
     #    sext.w  a5,a5
     beq     a5,zero,.L5
 
     lw      a5,-20(s0)
+    nop
+    nop
     addi    a5,a5,-1
     slli    a5,a5,2
     ld      a4,-56(s0)
