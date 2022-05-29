@@ -114,10 +114,10 @@ KMPSearch:
 
     addi    a5,s0,-48       
     mv      a2,a5
-    li      a1,inputSize
+    li      a1,20
     lui     a5,%hi(pattern)
     addi    a0,a5,%lo(pattern)
-    call    computeLPSArray(char*, int, int*)
+    call    computeLPSArray
     sw      zero,-20(s0)
     sw      zero,-24(s0)
     j       .L6
@@ -158,7 +158,7 @@ KMPSearch:
 .L8:
     lw      a4,-24(s0)
 #    sext.w  a4,a5
-    li      a5,patternSize
+    li      a5,5
     bne     a4,a5,.L9           # j != 5
 
     lw      a4,-20(s0)
@@ -182,7 +182,7 @@ KMPSearch:
 .L9:
     lw      a4,-20(s0)
 #    sext.w  a4,a5
-    li      a5,(inputSize-1)
+    li      a5,19
     bgt     a4,a5,.L6
 
     lui     a5,%hi(pattern)
