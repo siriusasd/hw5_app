@@ -62,10 +62,11 @@ computeLPSArray:
     blt     a4,a5,.L3
     #   nop
     #   nop
+    li a3,4
     ld a5,-56(s0)
     li t0,4
     add a5,a5,t0
-    ld t0,0(a5)
+    ld a3,0(a5)
     
     ld a5,-56(s0)
     li t1,8
@@ -147,7 +148,7 @@ KMPSearch:
     sw      zero,-24(s0)
     
     
-    li   a3,12   
+    li   a3,7  
     la a0, str
     li a7, 4
     ecall
