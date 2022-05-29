@@ -32,9 +32,6 @@ _start:
     sd      s0,0(sp)
     addi    s0,sp,16
     jal     KMPSearch
-    
-    addi    a3,zero,2
-    
     li      a5,0
     mv      a0,a5
     ld      ra,8(sp)
@@ -131,6 +128,9 @@ KMPSearch:
     li      a1,20
     lui     a5,%hi(pattern)
     addi    a0,a5,%lo(pattern)
+    
+    addi    a3,zero,3
+    
     jal    computeLPSArray
     sw      zero,-20(s0)
     sw      zero,-24(s0)
