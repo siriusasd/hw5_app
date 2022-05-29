@@ -31,7 +31,10 @@ _start:
     sd      ra,8(sp)
     sd      s0,0(sp)
     addi    s0,sp,16
-    jal    KMPSearch
+    jal     KMPSearch
+    
+    addi    a3,zero,2
+    
     li      a5,0
     mv      a0,a5
     ld      ra,8(sp)
