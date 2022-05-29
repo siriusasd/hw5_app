@@ -52,6 +52,7 @@ computeLPSArray:
     sw      zero,0(a5)          # lps[0] = 0
     addi    a5,zero,1
     sw      a5,-24(s0)          # i = 1
+    li      a3,4
     j       end                  #.L2
 
 KMPSearch:
@@ -63,13 +64,10 @@ KMPSearch:
     addi    a5,s0,-48       
     mv      a2,a5
     li      a1,20
-    
-    li      a3,3
-    
     lui     a5,%hi(pattern)
     addi    a0,a5,%lo(pattern)
-    
-    li      a3,4
+   
+    li      a3,2
     
     jal    computeLPSArray
     sw      zero,-20(s0)
