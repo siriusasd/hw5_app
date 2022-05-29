@@ -63,22 +63,74 @@ computeLPSArray:
     #   sext.w  a4,a4 
     #   sext.w  a5,a5
     
-    li      a3,3
-    
     blt     a4,a5,.L3
     #   nop
     #   nop
-    
-    li      a3,4
-    
+   
     ld      s0,56(sp)
     addi    sp,sp,64
     jr      ra
     
 .L3:
-    li      a3,5
-    j end
+    lw      a5,-24(s0)      
+    ld      a4,-40(s0)      
+    add     a5,a4,a5
+    lb      a3,0(a5)            # pat[i]
+    lw      a5,-20(s0)
+    ld      a4,-40(s0)
+    add     a5,a4,a5
+    lb      a5,0(a5)            # pat[len]
 
+    bne     a3,a5,.L4
+
+    lw      a5,-20(s0)
+    addi    a5,a5,1
+    sw      a5,-20(s0)          # len++
+    lw      a5,-24(s0)
+    slli    a5,a5,2
+    ld      a4,-56(s0)
+    add     a5,a4,a5            # lps[i]
+    lw      a4,-20(s0)
+    sw      a4,0(a5)            # lps[i] = len
+    lw      a5,-24(s0)
+    addi    a5,a5,1
+    sw      a5,-24(s0)          # i++
+    j       .L2
+ 
+.L4:
+    lw      a5,-20(s0)
+    #    sext.w  a5,a5
+    beq     a5,zero,.L5
+
+    lw      a5,-20(s0)
+    addi    a5,a5,-1
+    slli    a5,a5,2
+    ld      a4,-56(s0)
+    add     a5,a4,a5            # lps[len-1]
+    sw      a5,-20(s0)          # len = lps[len-1]
+    j       .L2 
+    
+.L5:
+    li      a3,7
+    mv     a0,a3
+    li a7, 1
+    ecall
+    
+    la a0, newline
+    li a7, 4
+    ecall
+      
+    
+    lw      a5,-24(s0)
+    slli    a5,a5,2
+    ld      a4,-56(s0)
+    add     a5,a4,a5            # lps[i]
+    sw      zero,0(a5)          # lps[i] = 0
+    lw      a5,-24(s0)          
+    addi    a5,a5,1
+    sw      a5,-24(s0)          # i++
+    j       .L2
+    
 KMPSearch:
     addi    sp,sp,-48
     sd      ra,40(sp)
