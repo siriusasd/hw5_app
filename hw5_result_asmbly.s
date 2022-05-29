@@ -52,8 +52,32 @@ computeLPSArray:
     sw      zero,0(a5)          # lps[0] = 0
     addi    a5,zero,1
     sw      a5,-24(s0)          # i = 1
+    
+    li      a3,2
+    
+    j       .L2
+    
+.L2:
+    lw      a4,-24(s0)      # i
+    lw      a5,-44(s0)      # M
+    #   sext.w  a4,a4 
+    #   sext.w  a5,a5
+    
+    li      a3,3
+    
+    blt     a4,a5,.L3
+    #   nop
+    #   nop
+    
     li      a3,4
-    j       end                  #.L2
+    
+    ld      s0,56(sp)
+    addi    sp,sp,64
+    jr      ra
+    
+.L3:
+    li      a3,5
+    j end
 
 KMPSearch:
     addi    sp,sp,-48
@@ -66,9 +90,6 @@ KMPSearch:
     li      a1,20
     lui     a5,%hi(pattern)
     addi    a0,a5,%lo(pattern)
-   
-    li      a3,2
-    
     jal    computeLPSArray
     sw      zero,-20(s0)
     sw      zero,-24(s0)
