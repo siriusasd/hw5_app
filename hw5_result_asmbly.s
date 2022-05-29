@@ -144,6 +144,7 @@ computeLPSArray:
     ld      a4,-56(s0)
     slli    a5,a5,2
     nop
+    nop
     add     a5,a4,a5            # lps[len-1]
     nop
     nop
