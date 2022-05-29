@@ -11,10 +11,10 @@
 .data
 .align 4
 # test pattern 1
-inputText: .string "ABABDABACDABABCABABC"
-pattern: .string "ABABC"
-inputSize: .word 20
-patternSize: .word 5
+inputText: .string "AAAAABAAABA"
+pattern: .string "AAAA"
+inputSize: .word 11
+patternSize: .word 4
 # test pattern 2
 # inputText: .string "ACGTCTGTAACGTCCACGCTC"
 # pattern: .string "ACG"
@@ -43,7 +43,6 @@ computeLPSArray:
     addi    sp,sp,-64
     sd      s0,56(sp)
     addi    s0,sp,64
-    
     sd      a0,-40(s0)
     sw      a1,-44(s0)          # M -> (patternSize)
     sd      a2,-56(s0)
@@ -52,9 +51,6 @@ computeLPSArray:
     sw      zero,0(a5)          # lps[0] = 0
     addi    a5,zero,1
     sw      a5,-24(s0)          # i = 1
-    
-    li      a3,2
-    
     j       .L2
     
 .L2:
@@ -66,7 +62,17 @@ computeLPSArray:
     blt     a4,a5,.L3
     #   nop
     #   nop
-   
+    ld a5,-56(s0)
+    li t0,4
+    li t1,8
+    li t2,12
+    add t0,a5,t0
+    add t1,a5,t1
+    add t2,a5,t2
+    sd t0,0(t0)
+    sd t1,0(t1)
+    sd t2,0(t2)
+    
     ld      s0,56(sp)
     addi    sp,sp,64
     jr      ra
@@ -129,16 +135,20 @@ KMPSearch:
 
     addi    a5,s0,-48       
     mv      a2,a5
-    li      a1,20
+    li      a1,11
     lui     a5,%hi(pattern)
     addi    a0,a5,%lo(pattern)
     jal    computeLPSArray
     sw      zero,-20(s0)
     sw      zero,-24(s0)
-    li   a3,11
+    
+    
+    li   a3,12   
     la a0, str
     li a7, 4
     ecall
+    
+    
     j       end                #.L6
 
 end:nop
