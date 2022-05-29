@@ -30,10 +30,7 @@ _start:
     addi    sp,sp,-16
     sd      ra,8(sp)
     sd      s0,0(sp)
-    addi    s0,sp,16
-    
-    li      a6,7
-    
+    addi    s0,sp,1
     jal     KMPSearch
     li      a5,0
     mv      a0,a5
@@ -54,6 +51,9 @@ computeLPSArray:
     sw      zero,0(a5)          # lps[0] = 0
     addi    a5,zero,1
     sw      a5,-24(s0)          # i = 1
+    
+    li      a6,7
+    
     j       .L2
     
 .L2:
