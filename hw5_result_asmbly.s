@@ -106,7 +106,9 @@ computeLPSArray:
     lw      a5,-20(s0)
     ld      a4,-40(s0)
     nop
+    nop
     add     a4,a4,a5
+    nop
     nop
     lb      a5,0(a4)            # pat[len]
 
