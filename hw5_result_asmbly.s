@@ -126,10 +126,13 @@ KMPSearch:
     addi    a5,s0,-48       
     mv      a2,a5
     li      a1,20
+    
+    addi    a3,zero,3
+    
     lui     a5,%hi(pattern)
     addi    a0,a5,%lo(pattern)
     
-    addi    a3,zero,3
+    addi    a3,zero,4
     
     jal    computeLPSArray
     sw      zero,-20(s0)
