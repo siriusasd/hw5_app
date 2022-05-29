@@ -58,27 +58,36 @@ computeLPSArray:
     lw      a5,-44(s0)      # M
     #   sext.w  a4,a4 
     #   sext.w  a5,a5
-    li      a6,8
+    nop
     blt     a4,a5,.L3
-    #   nop
-    #   nop
     li      a6,10
+    
     li a7,4
     ld a5,-56(s0)
     li t1,4
-    add a5,a5,t0
+    nop
+    add a5,a5,t1
+    nop
+    nop
     ld t1,0(a5)
     
     ld a5,-56(s0)
     li t2,8
+    nop
     add a5,a5,t2
+    nop
+    nop
     ld t2,0(a5)
     
     ld a5,-56(s0)
     li t3,12
+    nop
     add a5,a5,t3
+    nop
+    nop
     ld t3,0(a5)
     
+    li      a6,9
     ld      s0,56(sp)
     addi    sp,sp,64
     jr      ra
