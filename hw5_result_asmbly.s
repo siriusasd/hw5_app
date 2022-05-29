@@ -133,7 +133,8 @@ computeLPSArray:
     nop
     #    sext.w  a5,a5
     beq     a5,zero,.L5
-
+    nop
+    nop
     lw      a5,-20(s0)
     nop
     nop
