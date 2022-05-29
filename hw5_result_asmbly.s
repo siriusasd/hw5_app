@@ -64,14 +64,18 @@ computeLPSArray:
     #   nop
     ld a5,-56(s0)
     li t0,4
+    add a5,a5,t0
+    ld t0,0(a5)
+    
+    ld a5,-56(s0)
     li t1,8
+    add a5,a5,t1
+    ld t1,0(a5)
+    
+    ld a5,-56(s0)
     li t2,12
-    add t0,a5,t0
-    add t1,a5,t1
-    add t2,a5,t2
-    sd t0,t0
-    sd t1,t1
-    sd t2,t2
+    add a5,a5,t2
+    ld t2,0(a5)
     
     ld      s0,56(sp)
     addi    sp,sp,64
