@@ -69,9 +69,9 @@ computeLPSArray:
     add t0,a5,t0
     add t1,a5,t1
     add t2,a5,t2
-    sd t0,0(t0)
-    sd t1,0(t1)
-    sd t2,0(t2)
+    sd t0,t0
+    sd t1,t1
+    sd t2,t2
     
     ld      s0,56(sp)
     addi    sp,sp,64
